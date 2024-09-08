@@ -1,17 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main() {
-    char str1[100], str2[100];
+    int count = 0;
+    char number[100];  // Mudei de char para um array de char
+    int intNumber;
 
-    printf("Digite a primeira string: ");
-    fgets(str1, sizeof(str1), stdin);
-    str1[strcspn(str1, "\n")] = '\0';
+    while (1) {
+        printf("Type your number: ");
+        scanf("%s", number);  // Agora lê como string
+        count++;
 
-    printf("Digite a segunda string: ");
-    fgets(str2, sizeof(str2), stdin);
-    str2[strcspn(str2, "\n")] = '\0';
+        // Verifica se o campo está vazio ou apenas contém espaços
+        if (strcmp(number, "") == 0 || strcmp(number, " ") == 0) {
+            printf("Empty field\n");
+            continue;
+        }
 
-    printf("%s %s\n", str1, str2);
+        intNumber = atoi(number);  // Converte string para número
+
+        if (intNumber < 0) {
+            printf("End of program\n");
+            break;
+        }
+    }
+
+    printf("Total of numbers: %d\n", count);  // Corrigido para imprimir o contador
 
     return 0;
 }
